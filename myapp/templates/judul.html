@@ -1,0 +1,8 @@
+	<center>
+		<h1>PERPUSTAKAAN</h1>
+		{% if user.is_authenticated %}
+		<p>hallo,<strong>  {{ user }}</strong> / <a href="/keluar">Keluar</a>
+		</p>
+		{% endif %}
+	</center>
+	
