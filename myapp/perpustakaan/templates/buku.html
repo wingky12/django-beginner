@@ -9,6 +9,7 @@
 			<h1>
 				Data Buku
 				<a href="{% url 'tambah_buku' %}" class="btn btn-success">Tambah buku</a>
+				<a href="{% url 'export_xls' %}" class="btn btn-primary">Export Data buku</a>
 			</h1>
 			{% for pesan in messages%}
 			<div class="alert alert-success">{{  pesan }}</div>
@@ -16,6 +17,7 @@
 			<table class="table">
 				<thead>
 					<tr>
+						<th>COVER</th>
 						<th>JUDUL</th>
 						<th>PENULIS</th>
 						<th>PENERBIT</th>
@@ -27,6 +29,11 @@
 				<tbody>
 					{% for buku in books %}
 					<tr>
+						<td>
+							{% if buku.cover %}
+							<img src="{{ buku.cover.url}}" alt="">
+							{% endif %}
+						</td>
 						<td><a href="{% url 'ubah_buku' buku.id %}">{{buku.judul}}</a></td>
 						<td>{{buku.penulis}}</td>
 						<td>{{buku.penerbit}}</td>

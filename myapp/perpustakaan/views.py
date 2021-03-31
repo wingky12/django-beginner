@@ -7,6 +7,15 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.contrib.auth.forms import UserCreationForm
 
+from perpustakaan.resource import BukuResource
+
+def export_xls(request):
+    buku = BukuResource()
+    dataset = buku.export()
+    response = HttpResponse(dataset.xls, content_type='application/vnd.ms-excel')
+    response['Content-Disposition'] = 'attachment; filename=buku.xls'
+    return response
+
 
 
 
@@ -47,7 +56,7 @@ def ubah_buku(request,id_buku):
     buku = Buku.objects.get(id=id_buku)
     template = 'ubah_buku.html'
     if request.POST:
-        form = FormBuku(request.POST,instance=buku)
+        form = FormBuku(request.POST,request.FILES, instance=buku)
         if form.is_valid():
             form.save()
             messages.success(request,"Data Berhasil di perbaharui")
@@ -81,7 +90,7 @@ def penerbit(request):
 @login_required(login_url=settings.LOGIN_URL)
 def tambah_buku(request):
     if request.POST:
-        form =  FormBuku(request.POST)
+        form =  FormBuku(request.POST, request.FILES)
         if form.is_valid():
                 form.save()
                 form = FormBuku()

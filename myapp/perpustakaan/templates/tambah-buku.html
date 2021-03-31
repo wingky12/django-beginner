@@ -8,7 +8,7 @@
             {% if pesan %}
             <div class="alert alert-success">{{ pesan }}</div>
             {% endif %}
-            <form action="/tambah-buku/" method="POST">
+            <form action="/tambah-buku/" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button class="btn btn-primary"> Simpan </button>
