@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    status : {{ keterangan }}
+
+    {% if level == 'superadmin' %}
+        <button class="btn btn-primary"> {{ keterangan }}</button>
+    {% elif level == 'staff' %}
+        <button class="btn btn-success"> {{ keterangan }}</button>
+    {% elif level == 'no_staff' %}
+        <button class="btn btn-warning"> {{ keterangan }}</button>
+    {% else %}
+       
+    {% endif %}
+{% endblock %}

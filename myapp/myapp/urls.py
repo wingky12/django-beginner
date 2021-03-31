@@ -43,7 +43,9 @@ urlpatterns = [
     path('masuk',LoginView.as_view(), name='masuk'),
     path('keluar/',LogoutView.as_view(next_page='masuk'),name='keluar'),
     path('signup/',signup, name='signup'),
-    path('export/xls', export_xls, name='export_xls')
+    path('export/xls', export_xls, name='export_xls'),
+    # path('usertest', usertest, name='usertest'),
+      path('pdf/', pdf_download, name='pdf_download')
 ]
 
 

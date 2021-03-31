@@ -6,9 +6,23 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
+			<h2>{{user}}</h2>
+			{% if user.is_superuser %}
+				<h5>superadmin</h5>
+			{% else %}
+				{% if user.is_staff %}
+				<h5> staff </h5>
+				{% else %}
+				 <h5>Tamu </h5>
+				 {% endif %}
+			{% endif %}
 			<h1>
 				Data Buku
+				{% if user.is_staff%}
 				<a href="{% url 'tambah_buku' %}" class="btn btn-success">Tambah buku</a>
+				{% else %}
+
+				{% endif %}
 				<a href="{% url 'export_xls' %}" class="btn btn-primary">Export Data buku</a>
 			</h1>
 			{% for pesan in messages%}
@@ -43,6 +57,23 @@
 							Hapus
 						  </button>
 						  </td>	
+						  <div class="pagination">
+							<span class="step-links">
+								{% if books.has_previous %}
+									<a href="?page=1">&laquo; first</a>
+									<a href="?page={{ books.previous_page_number }}">previous</a>
+								{% endif %}
+						
+								<span class="current">
+									Page {{ books.number }} of {{ books.paginator.num_pages }}.
+								</span>
+						
+								{% if books.has_next %}
+									<a href="?page={{ books.next_page_number }}">next</a>
+									<a href="?page={{ books.paginator.num_pages }}">last &raquo;</a>
+								{% endif %}
+							</span>
+						</div>
 						  <!-- Modal -->
 					
 					
