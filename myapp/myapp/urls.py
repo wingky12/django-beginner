@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 #ini untuk routing awal di def index dibawah ini
 from django.http import HttpResponse
@@ -23,6 +23,12 @@ from perpustakaan.views import *
 #from . import views
 from django.contrib.auth.views import LoginView,LogoutView
 from django.conf.urls.static import static #panggil media ke url
+from perpustakaan.viewset_api import *
+from rest_framework import routers
+
+router =  routers.DefaultRouter()
+router.register('kelompok',KelompokViewset)
+
 
 #def buku(request):
 #	return HttpResponse("buku")
@@ -30,6 +36,7 @@ from django.conf.urls.static import static #panggil media ke url
 def index(request):
 	return HttpResponse("halaman depan")
 urlpatterns = [
+    path('api/',include(router.urls)),
     path('admin/', admin.site.urls),
     path('', index, name='index'),
  #   path('buku/', buku),
