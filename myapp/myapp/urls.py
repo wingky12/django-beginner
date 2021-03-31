@@ -35,8 +35,10 @@ router.register('kelompok',KelompokViewset)
 
 def index(request):
 	return HttpResponse("halaman depan")
+
 urlpatterns = [
-    path('api/',include(router.urls)),
+    path('api/',include(router.urls),name='api'),
+    
     path('admin/', admin.site.urls),
     path('', index, name='index'),
  #   path('buku/', buku),
