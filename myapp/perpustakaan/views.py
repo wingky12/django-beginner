@@ -187,4 +187,13 @@ def jointable(request):
             'negara': 'perpustakaan_negara.negara'
             },
     tables=['perpustakaan_negara'],where=['perpustakaan_buku.negara_id=perpustakaan_negara.id'])
+
     return render(request, 'join.html',{'displaydata':row})
+
+#     Goods.objects.all().extra(
+#     select={'reputation': 'shop.reputation'},
+#     tables=['shop'],
+#     where=['goods.shop_id=shop.id']
+# )
+# .order_by(['-num', '-reputation'])
+# .values('id', 'num', 'reputation')
