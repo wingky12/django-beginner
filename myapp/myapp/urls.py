@@ -55,7 +55,9 @@ urlpatterns = [
     path('export/xls', export_xls, name='export_xls'),
     # path('usertest', usertest, name='usertest'),
     path('pdf/', pdf_download, name='pdf_download'),
-    path('join',jointable,name='jointable')
+    path('join',jointable,name='jointable'),
+    path('cari',cari,name='cari'),
+    path('carian',carian,name='carian')
 ]
 
 

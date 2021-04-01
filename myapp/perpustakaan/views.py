@@ -197,3 +197,9 @@ def jointable(request):
 # )
 # .order_by(['-num', '-reputation'])
 # .values('id', 'num', 'reputation')
+
+def carian(request):
+    return render(request,'cari.html')
+def cari(request):
+    pencarian = request.POST['cari_data']
+    return HttpResponse(pencarian)
