@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from perpustakaan.models import Buku
+from perpustakaan.models import Buku, Negara
 from perpustakaan.form import FormBuku
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -13,6 +13,7 @@ from perpustakaan.data_buku import BukuList
 from django.contrib.auth import authenticate
 
 from perpustakaan.resource import BukuResource
+from django.db import connection
 
 import io
 from django.http import FileResponse
@@ -173,3 +174,17 @@ def pdf_download(request):
     # present the option to save the file.
     buffer.seek(0)
     return FileResponse(buffer, as_attachment=True, filename='hello.pdf')
+
+def jointable(request):
+#join 2 table
+    # cursor = connection.cursor()    
+    # cursor.execute("SELECT perpustakaan_buku.judul, perpustakaan_buku.penulis, perpustakaan_negara.negara from perpustakaan_buku JOIN perpustakaan_negara where perpustakaan_negara.id = perpustakaan_buku.id;")
+    # row = cursor.fetchone()
+    # return render(request, 'join.html',{'displaydata':row})
+    row = Buku.objects.all().extra(
+        select={
+            'judul': 'perpustakaan_buku.judul',
+            'negara': 'perpustakaan_negara.negara'
+            },
+    tables=['perpustakaan_negara'],where=['perpustakaan_buku.negara_id=perpustakaan_negara.id'])
+    return render(request, 'join.html',{'displaydata':row})

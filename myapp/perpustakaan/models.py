@@ -17,6 +17,13 @@ class Buku(models.Model):
     kelompok = models.ForeignKey(Kelompok, on_delete=models.CASCADE,null=True)
     cover = models.ImageField(upload_to='cover',null=True)
     tanggal = models.DateTimeField(auto_now_add=True,null=True)
-    
+    negara_id = models.IntegerField(null=True)
+
     def __str__(self):
         return self.judul
+
+class Negara(models.Model):
+    negara = models.CharField(max_length=50)
+    
+    def __str__(self):
+        return self.negara

@@ -1,0 +1,32 @@
+{% extends 'base.html'%}
+
+{% block content%}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+<h1>join</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>judul</th>
+            <th>Negara</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for display in displaydata %}
+        <tr>
+       
+       <td> {{ display.judul }}</td>
+       <td> {{ display.negara }}</td>
+        
+    </tr>
+    {% endfor%}
+    </tbody>
+
+</table>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

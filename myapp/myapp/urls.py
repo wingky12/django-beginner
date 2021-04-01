@@ -54,7 +54,8 @@ urlpatterns = [
     path('signup/',signup, name='signup'),
     path('export/xls', export_xls, name='export_xls'),
     # path('usertest', usertest, name='usertest'),
-      path('pdf/', pdf_download, name='pdf_download')
+    path('pdf/', pdf_download, name='pdf_download'),
+    path('join',jointable,name='jointable')
 ]
 
 
